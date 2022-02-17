@@ -13,6 +13,11 @@ Run the file using
 node .\assignment2.js
 ```
 
+Run test by using
+
+npm test
+```
+
 CSV documentation
 
 https://docs.fileformat.com/spreadsheet/csv/
