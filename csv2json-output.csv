@@ -1,24 +1,23 @@
-# ACTS Test Suite Generation: Wed Feb 16 20:36:16 PST 2022
+# ACTS Test Suite Generation: Wed Feb 16 20:39:57 PST 2022
 #  '*' represents don't care value 
 # Degree of interaction coverage: 2
 # Number of parameters: 9
 # Maximum number of values per parameter: 3
-# Number of configurations: 17
+# Number of configurations: 16
 has_header,enclosed_dquotes,contains_dquotes,dynamic_typing,separator,tsv,input_path,output_path,content
 false,false,false,false,comma,false,valid,invalid,csv
 true,true,true,true,comma,false,default,default,csv
-true,false,true,false,any,true,valid,valid,csv
-false,true,false,true,any,true,default,invalid,csv
+true,false,false,true,any,true,valid,valid,csv
+false,true,true,false,any,true,default,invalid,csv
 false,false,false,false,none,false,valid,default,random
 false,false,false,false,none,false,invalid,valid,random
 false,false,false,false,none,false,default,invalid,empty
 false,true,true,true,comma,false,default,valid,csv
 false,false,false,false,none,false,invalid,invalid,random
 false,false,false,false,none,false,invalid,default,random
-true,true,false,true,any,true,valid,default,csv
+true,true,true,false,any,true,valid,default,csv
 false,false,false,false,none,false,valid,valid,empty
 false,false,false,false,none,false,valid,default,empty
 false,false,false,false,none,false,default,valid,random
 true,true,true,true,none,false,default,invalid,csv
-false,false,true,true,any,false,default,invalid,csv
-true,true,false,false,any,true,default,invalid,csv
+false,true,false,true,any,false,default,invalid,csv
