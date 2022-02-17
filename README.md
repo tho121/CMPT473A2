@@ -2,10 +2,21 @@ Use this command to install csv2json
 
 ```
 npm install --save csv2json
+```
+
+
+use this command to install jtest
+
+```
 npm init -y
 npm i jest --save-dev
+```
+
+commands needed to compare files
+```
 npm install turbodepot-node
 ```
+
 
 Run the file using 
 
@@ -14,7 +25,7 @@ node .\assignment2.js
 ```
 
 Run test by using
-
+```
 npm test
 ```
 
