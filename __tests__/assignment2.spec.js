@@ -1,7 +1,8 @@
-console.log("Hello World");
-
+const { test, expect } = require('@jest/globals');
 var csv2json = require('csv2json');
 var fs = require('fs');
+const { FilesManager } = require('turbodepot-node');
+let filesManager = new FilesManager();
  
 
 //fs.createReadStream('csv/data.csv').pipe(csv2json({separator: ';'})).pipe(fs.createWriteStream('json/data.json'));
@@ -12,3 +13,9 @@ var fs = require('fs');
 //fs.createReadStream('csv/quotes1.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/quotes1.json'));
 //fs.createReadStream('csv/line_break.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/line_break.json'));
 fs.createReadStream('csv/quotes2.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/quotes2.json'));
+
+describe("Function", () => {
+    test("dummy test", () => {
+        expect(filesManager.isFileEqualTo('json/quotes2.json', 'json/quotes2.json')).toEqual(true);
+    });
+});

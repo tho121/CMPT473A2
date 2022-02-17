@@ -1,0 +1,28 @@
+{
+  "name": "CMPT473A2",
+  "version": "1.0.0",
+  "description": "Use this command to install csv2json",
+  "main": "assignment2.js",
+  "dependencies": {
+    "csv2json": "^2.0.2",
+    "jest-diff": "^27.5.1",
+    "turbodepot-node": "^7.0.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tho121/CMPT473A2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tho121/CMPT473A2/issues"
+  },
+  "homepage": "https://github.com/tho121/CMPT473A2#readme"
+}
