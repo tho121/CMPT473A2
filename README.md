@@ -14,6 +14,7 @@ CSV documentation
 
 https://docs.fileformat.com/spreadsheet/csv/
 https://datatracker.ietf.org/doc/html/rfc4180
+https://github.com/julien-f/csv2json
 
 JSON documentation
 
