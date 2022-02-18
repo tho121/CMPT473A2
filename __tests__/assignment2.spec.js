@@ -14,7 +14,7 @@ let filesManager = new FilesManager();
 //fs.createReadStream('csv/quotes2.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/quotes2.json'));
 //fs.createReadStream('csv/line_break.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/line_break.json'));
 
-describe("no header, not double quote enclosed, no dynamic typing, comma separated, tab not as separator, valid input and output path, csv", () => {
+describe("no header, not double quote enclosed, no dynamic typing, comma separated, valid input and output path, csv", () => {
     test("Test_1", async() => {
         var expected;
         var generated;
@@ -32,7 +32,7 @@ describe("no header, not double quote enclosed, no dynamic typing, comma separat
     });
 });
 
-describe("Header, double quote enclosed, contains double quotes, dynamic typing, tab as separator, valid input and output path, csv", () => {
+describe("Header, double quote enclosed, contains double quotes, dynamic typing, valid input and output path, csv", () => {
     test("Test_2", async() => {
         var expected;
         var generated;
@@ -102,3 +102,70 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
     });
 });
 
+describe("no header, not double quote enclosed, no dynamic typing, default separator, default input path, invalid output path, random", () => {
+    test("Test_5", async() => {
+        const writeStream = fs.createWriteStream('invalid/wouldthiswork/invalid_path');
+        const readStream = fs.createReadStream('');
+        writeStream.on('error', function(e) {
+            expect(e.errno).toEqual(-2);
+        });
+        readStream.on('error', function(e) {
+            expect(e.path).toEqual('');
+        });
+    });
+});
+
+describe("no header, not double quote enclosed, no dynamic typing, default separator, valid input path, default output path, empty", () => {
+    test("Test_6", async() => {
+        var writeStream = fs.createWriteStream('json/test6.json');
+        writeStream.on('error', function(e) {
+            expect(e.path).toEqual('');
+        });
+    });
+});
+
+describe("no header, not double quote enclosed, no dynamic typing, default separator, valid input and output path, empty", () => {
+    test("Test_7", async() => {
+        var expected;
+        var generated;
+        
+        var promise = new Promise((resolve, reject) => {
+            var writeStream = fs.createWriteStream('json/test7.json');
+            fs.createReadStream('csv/emptyInput.csv').pipe(csv2json({})).pipe(writeStream).on('finish', resolve).on('error', reject);
+        });
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync('expectedOutput/empty.json', 'utf-8'));
+            generated = JSON.parse(fs.readFileSync('json/test7.json', 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+describe("no header, not double quote enclosed, no dynamic typing, default separator, valid input and output path, random", () => {
+    test("Test_8", async() => {
+        var expected;
+        var generated;
+        
+        var promise = new Promise((resolve, reject) => {
+            var writeStream = fs.createWriteStream('json/test8.json');
+            fs.createReadStream('csv/randomInput.csv').pipe(csv2json({})).pipe(writeStream).on('finish', resolve).on('error', reject);
+        });
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync('expectedOutput/random.json', 'utf-8'));
+            generated = JSON.parse(fs.readFileSync('json/test.json', 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+describe("no header, not double quote enclosed, no dynamic typing, default separator, valid input, default output path, random", () => {
+    test("Test_9", async() => {
+        const writeStream = fs.createWriteStream('');
+        const readStream = fs.createReadStream('csv/randomInput.csv');
+        writeStream.on('error', function(e) {
+            expect(e.path).toEqual('');
+        });
+    });
+});
