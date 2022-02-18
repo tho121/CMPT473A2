@@ -61,7 +61,7 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
 
         writeStream.on('ready', function() {
             var promise = new Promise((resolve, reject) => {
-                fs.createReadStream('csv/test3/csv').pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
+                fs.createReadStream('csv/randomInput.csv').pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
             });
             return promise.finally(()=>{
                 expected = JSON.parse(fs.readFileSync('expectedOutput/test3.json/but/this/doesnt/exist', 'utf-8'));
