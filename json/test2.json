@@ -1,0 +1,5 @@
+[
+{"name":"Bob","age":23,"email":"Bo\"b\"@sfu.ca","gpa":3.2},
+{"name":"Alice","age":34,"email":"Al\"i\"ce@sfu.ca","gpa":3.4},
+{"name":"Judy","age":52,"email":"Judy@sfu.ca","gpa":4}
+]
