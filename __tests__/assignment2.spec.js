@@ -154,7 +154,7 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
 
         return promise.finally(()=>{
             expected = JSON.parse(fs.readFileSync('expectedOutput/random.json', 'utf-8'));
-            generated = JSON.parse(fs.readFileSync('json/test.json', 'utf-8'));
+            generated = JSON.parse(fs.readFileSync('json/test8.json', 'utf-8'));
             expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
         });
     });
