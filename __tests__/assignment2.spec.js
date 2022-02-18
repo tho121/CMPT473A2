@@ -178,7 +178,6 @@ describe("no header, not double quote enclosed, no dynamic typing, not comma sep
         var writeStream = fs.createWriteStream(generatedPath);
         var readStream = fs.createReadStream('csv/test10.csv');
 
-        //TODO:: Handling the error in tryCatch
         writeStream.on('error', function(e) {
             expect(e.errno).toEqual(-2);
         });
@@ -200,21 +199,6 @@ describe("no header, not double quote enclosed, no dynamic typing, not comma sep
                 }
             });
         });
-        /////
-
-    //     var promise = new Promise((resolve, reject) => {
-                    
-    //         var writeStream = fs.createWriteStream(generatedPath);
-    //         fs.createReadStream('csv/test10.csv').pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
-
-    //     });
-
-
-    //     return promise.finally(()=>{
-    //         expected = JSON.parse(fs.readFileSync('expectedOutput/test1.json', 'utf-8'));
-    //         generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
-    //         expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
-    //     });
     });
 });
 
