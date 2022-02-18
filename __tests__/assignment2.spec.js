@@ -169,3 +169,222 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
         });
     });
 });
+
+
+describe("no header, not double quote enclosed, no dynamic typing, not comma separated, valid input but invalid output path, no content(empty)", () => {
+    test("Test_10", async() => {
+        var expected;
+        var generatedPath = 'invalid_path/test10.json';
+        var writeStream = fs.createWriteStream(generatedPath);
+        var readStream = fs.createReadStream('csv/test10.csv');
+
+        //TODO:: Handling the error in tryCatch
+        writeStream.on('error', function(e) {
+            expect(e.errno).toEqual(-2);
+        });
+        readStream.on('error', function(e) {
+            expect(e.errno).toEqual(-2);
+        });
+
+        writeStream.on('ready', function() {
+            readStream.on('ready', async function() {
+                var promise = new Promise((resolve, reject) => {
+                    readStream.pipe(csv2json()).pipe(testFilePath).on('finish', resolve).on('error', reject);
+                });
+                try {
+                    return await promise;
+                } finally {
+                    expected = JSON.parse(fs.readFileSync('expectedOutput/test10.json', 'utf-8'));
+                    generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+                    expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+                }
+            });
+        });
+        /////
+
+    //     var promise = new Promise((resolve, reject) => {
+                    
+    //         var writeStream = fs.createWriteStream(generatedPath);
+    //         fs.createReadStream('csv/test10.csv').pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+    //     });
+
+
+    //     return promise.finally(()=>{
+    //         expected = JSON.parse(fs.readFileSync('expectedOutput/test1.json', 'utf-8'));
+    //         generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+    //         expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+    //     });
+    });
+});
+
+
+describe("header, double quote enclosed, dynamic typing, not comma separated, valid input and output path, no content(empty)", () => {
+    test("Test_11", async() => {
+        var expected;
+        let generatedPath = 'json/test11.json'
+        let expectedPath = 'expectedOutput/test11.json'
+        let testFilePath = 'csv/test11.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json({dynamicTyping: true,separator: ''})).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+
+describe("header, double quote enclosed,no dynamic typing, not comma separated, valid input and output path, csv content", () => {
+    test("Test_12", async() => {
+        var expected;
+        let generatedPath = 'json/test12.json'
+        let expectedPath = 'expectedOutput/test12.json'
+        let testFilePath = 'csv/test12.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json({separator: ','})).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+
+describe("no header, double quote enclosed, dynamic typing, ~ separated, valid input and output path, csv content", () => {
+    test("Test_13", async() => {
+        var expected;
+        let generatedPath = 'json/test13.json'
+        let expectedPath = 'expectedOutput/test13.json'
+        let testFilePath = 'csv/test13.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json({dynamicTyping: true, separator: '~'})).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+
+describe("header, no double quote enclosed, dynamic typing, ~ separated, valid input and output path, csv content", () => {
+    test("Test_14", async() => {
+        var expected;
+        let generatedPath = 'json/test14.json'
+        let expectedPath = 'expectedOutput/test14.json'
+        let testFilePath = 'csv/test14.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json({dynamicTyping: true, separator: '~'})).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+
+
+describe("header, double quote enclosed, no dynamic typing, no separator, valid input and output path, csv content", () => {
+    test("Test_15", async() => {
+        var expected;
+        let generatedPath = 'json/test15.json'
+        let expectedPath = 'expectedOutput/test15.json'
+        let testFilePath = 'csv/test15.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+
+
+describe("no header, no double quote enclosed, dynamic typing, comma seprated, valid input and output path, csv content", () => {
+    test("Test_16", async() => {
+        var expected;
+        let generatedPath = 'json/test16.json'
+        let expectedPath = 'expectedOutput/test16.json'
+        let testFilePath = 'csv/test16.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json({dynamicTyping: true, separator: ','})).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
+
+
+
+describe("header, double quote enclosed, no dynamic typing, ~ seprated, valid input and output path, csv content", () => {
+    test("Test_17", async() => {
+        var expected;
+        let generatedPath = 'json/test17.json'
+        let expectedPath = 'expectedOutput/test17.json'
+        let testFilePath = 'csv/test17.csv'
+
+        var promise = new Promise((resolve, reject) => {
+                    
+            var writeStream = fs.createWriteStream(generatedPath);
+            fs.createReadStream(testFilePath).pipe(csv2json({separator: '~'})).pipe(writeStream).on('finish', resolve).on('error', reject);
+
+        });
+
+
+        return promise.finally(()=>{
+            expected = JSON.parse(fs.readFileSync(expectedPath, 'utf-8'));
+            generated = JSON.parse(fs.readFileSync(generatedPath, 'utf-8'));
+            expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+        });
+    });
+});
