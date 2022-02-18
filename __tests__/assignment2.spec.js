@@ -39,7 +39,7 @@ describe("Header, double quote enclosed, contains double quotes, dynamic typing,
         
         var promise = new Promise((resolve, reject) => {
             var writeStream = fs.createWriteStream('json/test2.json');
-            fs.createReadStream('csv/test2.tab').pipe(csv2json({dynamicTyping: true, separator: '~'})).pipe(writeStream).on('finish', resolve).on('error', reject);
+            fs.createReadStream('csv/test2.csv').pipe(csv2json({dynamicTyping: true, separator: '~'})).pipe(writeStream).on('finish', resolve).on('error', reject);
         });
 
         return promise.finally(()=>{
@@ -49,3 +49,56 @@ describe("Header, double quote enclosed, contains double quotes, dynamic typing,
         });
     });
 });
+
+describe("no header, not double quote enclosed, no dynamic typing, default separator, valid input path, invalid output path, random", () => {
+    test("Test_3", async() => {
+        var expected;
+        var generated;
+        const writeStream = fs.createWriteStream('invalid/path/hi');
+        writeStream.on('error', function(e) {
+            expect(e.errno).toEqual(-2);
+        });
+
+        writeStream.on('ready', function() {
+            var promise = new Promise((resolve, reject) => {
+                fs.createReadStream('csv/test3/csv').pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
+            });
+            return promise.finally(()=>{
+                expected = JSON.parse(fs.readFileSync('expectedOutput/test3.json/but/this/doesnt/exist', 'utf-8'));
+                generated = JSON.parse(fs.readFileSync('json/test3.son/but/this/doesnt/exist', 'utf-8'));
+                expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+            });
+        });
+    });
+});
+
+describe("no header, not double quote enclosed, no dynamic typing, default separator, invalid input and output path, random", () => {
+    test("Test_4", async() => {
+        var expected;
+        var generated;
+        const writeStream = fs.createWriteStream('invalid/wouldthiswork/invalid_path');
+        const readStream = fs.createReadStream('invalid/path/again');
+        writeStream.on('error', function(e) {
+            expect(e.errno).toEqual(-2);
+        });
+        readStream.on('error', function(e) {
+            expect(e.errno).toEqual(-2);
+        });
+
+        writeStream.on('ready', function() {
+            readStream.on('ready', async function() {
+                var promise = new Promise((resolve, reject) => {
+                    readStream.pipe(csv2json()).pipe(writeStream).on('finish', resolve).on('error', reject);
+                });
+                try {
+                    return await promise;
+                } finally {
+                    expected = JSON.parse(fs.readFileSync('expectedOutput/test4.json/but/this/doesnt/exist', 'utf-8'));
+                    generated = JSON.parse(fs.readFileSync('json/test4.son/but/this/doesnt/exist', 'utf-8'));
+                    expect(JSON.stringify(expected)==JSON.stringify(generated)).toEqual(true);
+                }
+            });
+        });
+    });
+});
+
