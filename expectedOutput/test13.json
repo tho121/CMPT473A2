@@ -1,5 +1,5 @@
 [
-{"name":"Bob","age":23,"email":"Bob@sfu.ca","gpa":3.2},
-{"name":"Alice","age":34,"email":"Alice@sfu.ca","gpa":3.4},
-{"name":"Judy","age":52,"email":"Judy@sfu.ca","gpa":4}
+{"0":"Bob","1":23,"2":"Bob@sfu.ca","3":3.2},
+{"0":"Alice","1":34,"2":"Alice@sfu.ca","3":3.4},
+{"0":"Judy","1":52,"2":"Judy@sfu.ca","3":4}
 ]
