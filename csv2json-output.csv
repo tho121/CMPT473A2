@@ -1,25 +1,24 @@
-# ACTS Test Suite Generation: Thu Feb 17 11:20:15 PST 2022
+# ACTS Test Suite Generation: Thu Feb 17 16:23:35 PST 2022
 #  '*' represents don't care value 
 # Degree of interaction coverage: 2
-# Number of parameters: 9
+# Number of parameters: 8
 # Maximum number of values per parameter: 3
-# Number of configurations: 18
-has_header,enclosed_dquotes,contains_dquotes,dynamic_typing,separator,tsv,input_path,output_path,content
-false,false,false,false,comma,false,valid,valid,csv
-true,true,true,true,any,true,valid,valid,csv
-false,false,false,false,none,false,valid,invalid,random
-false,false,false,false,none,false,invalid,invalid,random
-false,false,false,false,none,false,default,invalid,random
-false,false,false,false,none,false,valid,default,empty
-false,false,false,false,none,false,valid,valid,empty
-false,false,false,false,none,false,valid,valid,random
-false,false,false,false,none,false,valid,default,random
-false,false,false,false,none,false,valid,invalid,empty
-true,true,false,true,none,false,valid,valid,csv
-true,true,true,false,comma,false,valid,valid,csv
-false,true,true,true,any,true,valid,valid,csv
-true,false,false,true,any,true,valid,valid,csv
-true,true,true,false,none,false,valid,valid,csv
-false,false,false,true,comma,false,valid,valid,csv
-true,true,true,false,any,true,valid,valid,csv
-false,true,true,false,any,false,valid,valid,csv
+# Number of configurations: 17
+has_header,enclosed_dquotes,contains_dquotes,dynamic_typing,separator,input_path,output_path,content
+false,false,false,false,comma,valid,valid,csv
+true,true,true,true,any,valid,valid,csv
+false,false,false,false,none,valid,invalid,random
+false,false,false,false,none,invalid,invalid,random
+false,false,false,false,none,default,invalid,random
+false,false,false,false,none,valid,default,empty
+false,false,false,false,none,valid,valid,empty
+false,false,false,false,none,valid,valid,random
+false,false,false,false,none,valid,default,random
+false,false,false,false,none,valid,invalid,empty
+true,true,false,true,none,valid,valid,csv
+true,true,true,false,comma,valid,valid,csv
+false,true,true,true,any,valid,valid,csv
+true,false,false,true,any,valid,valid,csv
+true,true,true,false,none,valid,valid,csv
+false,false,false,true,comma,valid,valid,csv
+true,true,true,false,any,valid,valid,csv
