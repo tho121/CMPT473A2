@@ -1,18 +1,8 @@
 const { test, expect } = require('@jest/globals');
 var csv2json = require('csv2json');
 var fs = require('fs');
-const { FilesManager, ConsoleManager } = require('turbodepot-node');
-let filesManager = new FilesManager();
  
 
-//fs.createReadStream('csv/data.csv').pipe(csv2json({separator: ';'})).pipe(fs.createWriteStream('json/data.json'));
-//fs.createReadStream('csv/data2.csv').pipe(csv2json()).pipe(fs.createWriteStream('json/data2.json'));
-//fs.createReadStream('csv/no_header.csv').pipe(csv2json()).pipe(fs.createWriteStream('json/no_header.json'));
-//fs.createReadStream('csv/dynamic.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/dynamic.json'));
-//fs.createReadStream('csv/dynamic_bounds.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/dynamic_bounds.json'));
-//fs.createReadStream('csv/quotes1.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/quotes1.json'));
-//fs.createReadStream('csv/quotes2.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/quotes2.json'));
-//fs.createReadStream('csv/line_break.csv').pipe(csv2json({dynamicTyping: true})).pipe(fs.createWriteStream('json/line_break.json'));
 
 describe("no header, not double quote enclosed, no dynamic typing, comma separated, valid input and output path, csv", () => {
     test("Test_1", async() => {
@@ -119,7 +109,6 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
     test("Test_6", async() => {
         var writeStream = fs.createWriteStream('');
         writeStream.on('error', function(e) {
-            console.log(e);
             expect(e.path).toEqual('');
         });
     });
