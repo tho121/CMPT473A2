@@ -119,7 +119,6 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
     test("Test_6", async() => {
         var writeStream = fs.createWriteStream('');
         writeStream.on('error', function(e) {
-            console.log(e);
             expect(e.path).toEqual('');
         });
     });
