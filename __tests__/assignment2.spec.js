@@ -1,7 +1,7 @@
 const { test, expect } = require('@jest/globals');
 var csv2json = require('csv2json');
 var fs = require('fs');
-const { FilesManager } = require('turbodepot-node');
+const { FilesManager, ConsoleManager } = require('turbodepot-node');
 let filesManager = new FilesManager();
  
 
@@ -56,7 +56,7 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
         var generated;
         const writeStream = fs.createWriteStream('invalid/path/hi');
         writeStream.on('error', function(e) {
-            expect(e.errno).toEqual(-2);
+            expect(e.code).toEqual('ENOENT');
         });
 
         writeStream.on('ready', function() {
@@ -79,10 +79,10 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
         const writeStream = fs.createWriteStream('invalid/wouldthiswork/invalid_path');
         const readStream = fs.createReadStream('invalid/path/again');
         writeStream.on('error', function(e) {
-            expect(e.errno).toEqual(-2);
+            expect(e.code).toEqual('ENOENT');
         });
         readStream.on('error', function(e) {
-            expect(e.errno).toEqual(-2);
+            expect(e.code).toEqual('ENOENT');
         });
 
         writeStream.on('ready', function() {
@@ -107,7 +107,7 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
         const writeStream = fs.createWriteStream('invalid/wouldthiswork/invalid_path');
         const readStream = fs.createReadStream('');
         writeStream.on('error', function(e) {
-            expect(e.errno).toEqual(-2);
+            expect(e.code).toEqual('ENOENT');
         });
         readStream.on('error', function(e) {
             expect(e.path).toEqual('');
@@ -117,8 +117,9 @@ describe("no header, not double quote enclosed, no dynamic typing, default separ
 
 describe("no header, not double quote enclosed, no dynamic typing, default separator, valid input path, default output path, empty", () => {
     test("Test_6", async() => {
-        var writeStream = fs.createWriteStream('json/test6.json');
+        var writeStream = fs.createWriteStream('');
         writeStream.on('error', function(e) {
+            console.log(e);
             expect(e.path).toEqual('');
         });
     });
@@ -179,10 +180,10 @@ describe("no header, not double quote enclosed, no dynamic typing, not comma sep
         var readStream = fs.createReadStream('csv/test10.csv');
 
         writeStream.on('error', function(e) {
-            expect(e.errno).toEqual(-2);
+            expect(e.code).toEqual('ENOENT');
         });
         readStream.on('error', function(e) {
-            expect(e.errno).toEqual(-2);
+            expect(e.code).toEqual('ENOENT');
         });
 
         writeStream.on('ready', function() {
