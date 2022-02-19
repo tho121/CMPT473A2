@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System name="csv2json">
+  <Parameters>
+    <Parameter id="0" name="has_header" type="2">
+      <values>
+        <value>true</value>
+        <value>false</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="1" name="enclosed_dquotes" type="2">
+      <values>
+        <value>true</value>
+        <value>false</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="2" name="contains_dquotes" type="2">
+      <values>
+        <value>true</value>
+        <value>false</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="3" name="dynamic_typing" type="2">
+      <values>
+        <value>true</value>
+        <value>false</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="4" name="separator" type="1">
+      <values>
+        <value>comma</value>
+        <value>any</value>
+        <value>none</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="5" name="input_path" type="1">
+      <values>
+        <value>valid</value>
+        <value>invalid</value>
+        <value>default</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="6" name="output_path" type="1">
+      <values>
+        <value>valid</value>
+        <value>invalid</value>
+        <value>default</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="7" name="content" type="1">
+      <values>
+        <value>csv</value>
+        <value>random</value>
+        <value>empty</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+  </Parameters>
+  <OutputParameters />
+  <Relations />
+  <Constraints>
+    <Constraint text="(content != &quot;csv&quot;) =&gt; has_header = false">
+      <Parameters>
+        <Parameter name="content" />
+        <Parameter name="has_header" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(input_path != &quot;valid&quot;) =&gt; content = &quot;random&quot;">
+      <Parameters>
+        <Parameter name="input_path" />
+        <Parameter name="content" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(content != &quot;csv&quot;) =&gt; enclosed_dquotes = false">
+      <Parameters>
+        <Parameter name="content" />
+        <Parameter name="enclosed_dquotes" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(content != &quot;csv&quot;) =&gt; contains_dquotes = false">
+      <Parameters>
+        <Parameter name="content" />
+        <Parameter name="contains_dquotes" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(content != &quot;csv&quot;) =&gt; separator = &quot;none&quot;">
+      <Parameters>
+        <Parameter name="content" />
+        <Parameter name="separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(content != &quot;csv&quot;) =&gt; dynamic_typing = false">
+      <Parameters>
+        <Parameter name="content" />
+        <Parameter name="dynamic_typing" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(contains_dquotes = true) =&gt; enclosed_dquotes = true">
+      <Parameters>
+        <Parameter name="contains_dquotes" />
+        <Parameter name="enclosed_dquotes" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(input_path != &quot;valid&quot;) =&gt; output_path = &quot;invalid&quot;">
+      <Parameters>
+        <Parameter name="input_path" />
+        <Parameter name="output_path" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(input_path != &quot;valid&quot;) =&gt; enclosed_dquotes = false">
+      <Parameters>
+        <Parameter name="input_path" />
+        <Parameter name="enclosed_dquotes" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(input_path != &quot;valid&quot;) =&gt; contains_dquotes = false">
+      <Parameters>
+        <Parameter name="input_path" />
+        <Parameter name="contains_dquotes" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(input_path != &quot;valid&quot;)  =&gt; dynamic_typing = false">
+      <Parameters>
+        <Parameter name="input_path" />
+        <Parameter name="dynamic_typing" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(input_path != &quot;valid&quot;) =&gt; separator = &quot;none&quot;">
+      <Parameters>
+        <Parameter name="input_path" />
+        <Parameter name="separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(content = &quot;csv&quot;) =&gt; output_path = &quot;valid&quot;">
+      <Parameters>
+        <Parameter name="content" />
+        <Parameter name="output_path" />
+      </Parameters>
+    </Constraint>
+  </Constraints>
+  <Testset doi="">
+    <Testcase TCNo="0">
+      <Value>1</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>comma</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="1">
+      <Value>2</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>any</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="2">
+      <Value>3</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>invalid</Value>
+      <Value>random</Value>
+    </Testcase>
+    <Testcase TCNo="3">
+      <Value>4</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>invalid</Value>
+      <Value>invalid</Value>
+      <Value>random</Value>
+    </Testcase>
+    <Testcase TCNo="4">
+      <Value>5</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>default</Value>
+      <Value>invalid</Value>
+      <Value>random</Value>
+    </Testcase>
+    <Testcase TCNo="5">
+      <Value>6</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>default</Value>
+      <Value>empty</Value>
+    </Testcase>
+    <Testcase TCNo="6">
+      <Value>7</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>empty</Value>
+    </Testcase>
+    <Testcase TCNo="7">
+      <Value>8</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>random</Value>
+    </Testcase>
+    <Testcase TCNo="8">
+      <Value>9</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>default</Value>
+      <Value>random</Value>
+    </Testcase>
+    <Testcase TCNo="9">
+      <Value>10</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>invalid</Value>
+      <Value>empty</Value>
+    </Testcase>
+    <Testcase TCNo="10">
+      <Value>11</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>false</Value>
+      <Value>true</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="11">
+      <Value>12</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>false</Value>
+      <Value>comma</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="12">
+      <Value>13</Value>
+      <Value>false</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>any</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="13">
+      <Value>14</Value>
+      <Value>true</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>true</Value>
+      <Value>any</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="14">
+      <Value>15</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>false</Value>
+      <Value>none</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="15">
+      <Value>16</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>true</Value>
+      <Value>comma</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+    <Testcase TCNo="16">
+      <Value>17</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>false</Value>
+      <Value>any</Value>
+      <Value>valid</Value>
+      <Value>valid</Value>
+      <Value>csv</Value>
+    </Testcase>
+  </Testset>
+  <Header>
+    <Value />
+    <Value>HAS_HEADER</Value>
+    <Value>ENCLOSED_DQUOTES</Value>
+    <Value>CONTAINS_DQUOTES</Value>
+    <Value>DYNAMIC_TYPING</Value>
+    <Value>SEPARATOR</Value>
+    <Value>INPUT_PATH</Value>
+    <Value>OUTPUT_PATH</Value>
+    <Value>CONTENT</Value>
+  </Header>
+  <Stat-Data>
+    <ExecutionTime />
+    <MaxDomainSize />
+    <MinDomainSize />
+    <TotalNoOfCombination />
+    <TotalNoOfTests />
+    <Algorithm />
+  </Stat-Data>
+</System>
+
